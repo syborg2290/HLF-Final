@@ -1,0 +1,3 @@
+- source myenv/bin/activate
+- pip freeze > requirements.txt
+- python app.py
