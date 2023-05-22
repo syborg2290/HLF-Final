@@ -867,6 +867,7 @@ const PatientReports = () => {
 
       {/*  */}
       <div>
+      <h1 className="text-3xl mt-3 font-bold opacity-60 underline">Report Records</h1>
         <div className="pt-20 pb-1 place-items-center place-content-center">
           <button
             onClick={() => {

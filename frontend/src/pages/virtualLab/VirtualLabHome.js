@@ -45,9 +45,9 @@ const VirtualLabHome = () => {
         </span>
 
         {result ? (
-          <div className="inline-block text-left bg-gray-900 rounded-lg overflow-hidden align-bottom transition-all transform shadow-2xl sm:my-8 sm:align-middle max-w-8xl w-full">
+          <div className="inline-block text-left bg-white rounded-lg overflow-hidden align-bottom transition-all transform shadow-2xl sm:my-8 sm:align-middle max-w-8xl w-full pl-40 pr-40">
             <div>
-              <p className="mt-8 text-2xl font-semibold leading-none text-white tracking-tighter lg:text-2xl flex justify-center">
+              <p className="mt-3 text-3xl font-semibold leading-none text-black tracking-tighter lg:text-2xl flex justify-center underline">
                 Virtual Laboratory Result
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,10 +55,10 @@ const VirtualLabHome = () => {
                   <div>
                     {Object.entries(result).map(([key, value]) => (
                       <div key={key} className="ml-4 m-2">
-                        <strong className="text-white font-bold text-lg">
+                        <strong className="text-black font-bold text-lg">
                           {key}:
                         </strong>{" "}
-                        <span className="text-white opacity-50 ml-3">
+                        <span className="text-black opacity-50 ml-3">
                           {value}
                         </span>
                       </div>
