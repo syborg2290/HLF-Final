@@ -18,12 +18,17 @@ const VirtualLabHome = () => {
     if (image) {
       setIsLoading(true);
       const data = await process(image);
-      if (data) {
-        setResult(data);
-        console.log(data);
+      if (data.status) {
+        setResult(data.data);
         setIsLoading(false);
       } else {
         setIsLoading(false);
+        swal({
+          text: data.error.toUpperCase(),
+          icon: "error",
+          dangerMode: true,
+          title: "Oops, try again!",
+        });
       }
     } else {
       swal({
@@ -59,7 +64,18 @@ const VirtualLabHome = () => {
                           {key}:
                         </strong>{" "}
                         <span className="text-black opacity-50 ml-3">
-                          {value}
+                          {value}{" "}
+                          <span
+                            className={
+                              value >= 0.5
+                                ? "text-red-600 font-semibold"
+                                : value > 0.3
+                                ? "text-yellow-600 font-semibold"
+                                : "text-green-600 font-semibold"
+                            }
+                          >
+                            ({((value / 100) * 100).toFixed(1)} %)
+                          </span>
                         </span>
                       </div>
                     ))}

@@ -5,32 +5,28 @@ const BarChart = ({ data }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
+    const labels = Object.keys(data);
+    const values = Object.values(data);
+
+    // Generate dynamic background colors based on the values
+    const backgroundColor = values.map((value) => {
+      // Define your custom logic for assigning colors based on the value
+      if (value > 0.5) {
+        return "rgba(245, 69, 66, 0.7)"; // Red color
+      } else if (value > 0.3) {
+        return "rgba(227, 205, 9, 0.7)"; // Yellow color
+      } else {
+        return "rgba(8, 161, 41, 0.7)"; // Green color
+      }
+    });
+
     const chartData = {
-      labels: Object.keys(data),
+      labels,
       datasets: [
         {
           label: "Data",
-          data: Object.values(data),
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-          ],
+          data: values,
+          backgroundColor,
         },
       ],
     };
