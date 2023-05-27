@@ -136,6 +136,7 @@ const VirtualLabHome = () => {
                               alt=""
                               className="p-5 w-fit h-fit"
                               src={URL.createObjectURL(image)}
+                              accept="image/*"
                             />
                           )}
                         </div>
