@@ -177,7 +177,7 @@ export const getHospital = (hospitalId) => {
         {
           headers: {
             Authorization: localStorage.getItem("health-user-privatekey"),
-            "hospitalID": hospitalId,
+            hospitalID: hospitalId,
           },
         }
       )

@@ -43,7 +43,6 @@ const PatientTreatments = () => {
 
   useEffect(() => {
     getAllTreatmentsFunc();
-    setTableIsLoading(false);
   }, []);
 
   const handleImageChange = (event) => {
@@ -467,6 +466,7 @@ const PatientTreatments = () => {
 
       {/*  */}
       <div>
+      <h1 className="text-3xl mt-3 font-bold opacity-60 underline">Treatment Records</h1>
         <div className="pt-2 relative mx-auto text-gray-600 mt-10">
           <input
             className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"

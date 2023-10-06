@@ -11,14 +11,9 @@ export const process = (imageFile) => {
       .post("http://localhost:5000/generate/xray-process", formData)
       .then((res) => {
         if (res.data.error === undefined) {
-          resolve(res.data);
+          resolve({ status: true, data: res.data });
         } else {
-          swal({
-            text: res.data.error.toUpperCase(),
-            icon: "error",
-            dangerMode: true,
-            title: "Oops, try again!",
-          });
+          resolve({ status: false, error: res.data.error });
         }
       })
       .catch((err) => {

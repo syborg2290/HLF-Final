@@ -18,12 +18,17 @@ const VirtualLabHome = () => {
     if (image) {
       setIsLoading(true);
       const data = await process(image);
-      if (data) {
-        setResult(data);
-        console.log(data);
+      if (data.status) {
+        setResult(data.data);
         setIsLoading(false);
       } else {
         setIsLoading(false);
+        swal({
+          text: data.error.toUpperCase(),
+          icon: "error",
+          dangerMode: true,
+          title: "Oops, try again!",
+        });
       }
     } else {
       swal({
@@ -45,9 +50,9 @@ const VirtualLabHome = () => {
         </span>
 
         {result ? (
-          <div className="inline-block text-left bg-gray-900 rounded-lg overflow-hidden align-bottom transition-all transform shadow-2xl sm:my-8 sm:align-middle max-w-8xl w-full">
+          <div className="inline-block text-left bg-white rounded-lg overflow-hidden align-bottom transition-all transform shadow-2xl sm:my-8 sm:align-middle max-w-8xl w-full pl-40 pr-40">
             <div>
-              <p className="mt-8 text-2xl font-semibold leading-none text-white tracking-tighter lg:text-2xl flex justify-center">
+              <p className="mt-3 text-3xl font-semibold leading-none text-black tracking-tighter lg:text-2xl flex justify-center underline">
                 Virtual Laboratory Result
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,11 +60,22 @@ const VirtualLabHome = () => {
                   <div>
                     {Object.entries(result).map(([key, value]) => (
                       <div key={key} className="ml-4 m-2">
-                        <strong className="text-white font-bold text-lg">
+                        <strong className="text-black font-bold text-lg">
                           {key}:
                         </strong>{" "}
-                        <span className="text-white opacity-50 ml-3">
-                          {value}
+                        <span className="text-black opacity-50 ml-3">
+                          {value}{" "}
+                          <span
+                            className={
+                              value >= 0.5
+                                ? "text-red-600 font-semibold"
+                                : value > 0.3
+                                ? "text-yellow-600 font-semibold"
+                                : "text-green-600 font-semibold"
+                            }
+                          >
+                            ({((value / 100) * 100).toFixed(1)} %)
+                          </span>
                         </span>
                       </div>
                     ))}
@@ -120,6 +136,7 @@ const VirtualLabHome = () => {
                               alt=""
                               className="p-5 w-fit h-fit"
                               src={URL.createObjectURL(image)}
+                              accept="image/*"
                             />
                           )}
                         </div>
